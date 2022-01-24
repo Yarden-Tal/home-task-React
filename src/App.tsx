@@ -2,15 +2,15 @@ import React from "react";
 // Routing
 import { Routes, Route } from "react-router-dom";
 // Styles
-import "./App.css";
+import "./styles/css/App.css";
 // Components
 import Navbar from "./components/navbar/Navbar";
 import Table from "./components/table/Table";
 import Chart from "./components/chart/Chart";
 
-function App() {
+const App = (): JSX.Element => {
   return (
-    <div className="App">
+    <div className="app">
       <Navbar />
       <Routes>
         <Route path="/" element={<Table />} />
@@ -18,6 +18,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
