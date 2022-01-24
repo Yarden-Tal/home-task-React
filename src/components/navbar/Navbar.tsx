@@ -11,22 +11,27 @@ import Box from "@material-ui/core/Box";
 
 const Navbar = (): JSX.Element => {
   return (
-    <>
-      <Box className="navbar">
-        <Stack spacing={2}>
-          <Item className="navbar__button">
-            <Link className="navbar__button__link" to="/">
-              Table
-            </Link>
-          </Item>
-          <Item className="navbar__button">
-            <Link className="navbar__button__link" to="/chartView">
-              Chart
-            </Link>
-          </Item>
-        </Stack>
-      </Box>
-    </>
+    <Box className="navbar">
+      <Stack spacing={2}>
+        <Item className="navbar__button">
+          <div>
+            <a href="https://propdo.ai/il/" target="_blank">
+              <img src="../images/Logo.svg" alt="PropDo logo" />
+            </a>
+          </div>
+        </Item>
+        <Item className="navbar__button">
+          <Link className="navbar__button__link" to="/">
+            Table
+          </Link>
+        </Item>
+        <Item className="navbar__button">
+          <Link className="navbar__button__link" to="/chartView">
+            Chart
+          </Link>
+        </Item>
+      </Stack>
+    </Box>
   );
 };
 
