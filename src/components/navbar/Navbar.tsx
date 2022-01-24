@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 // Styles
 import "../../styles/css/Navbar.css";
 // Components
+import Svg from "./Svg";
+// MUI
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
 import Box from "@material-ui/core/Box";
+import { styled } from "@mui/material/styles";
 
 const Navbar = (): JSX.Element => {
   return (
@@ -16,7 +18,7 @@ const Navbar = (): JSX.Element => {
         <Item className="navbar__button">
           <div>
             <a href="https://propdo.ai/il/" target="_blank">
-              <img src="../images/Logo.svg" alt="PropDo logo" />
+              <Svg />
             </a>
           </div>
         </Item>

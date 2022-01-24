@@ -22,14 +22,12 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
-
-interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
-}
+// TS
+import {
+  Data,
+  EnhancedTableToolbarProps,
+  IHeadCell,
+} from "../../ts/interfaces/MUIInterfaces";
 
 function createData(
   name: string,
@@ -104,14 +102,7 @@ function stableSort<T>(
   return stabilizedThis.map((el) => el[0]);
 }
 
-interface HeadCell {
-  disablePadding: boolean;
-  id: keyof Data;
-  label: string;
-  numeric: boolean;
-}
-
-const headCells: readonly HeadCell[] = [
+const headCells: readonly IHeadCell[] = [
   {
     id: "name",
     numeric: false,
@@ -144,7 +135,7 @@ const headCells: readonly HeadCell[] = [
   },
 ];
 
-interface EnhancedTableProps {
+interface IEnhancedTableProps {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
@@ -156,7 +147,7 @@ interface EnhancedTableProps {
   rowCount: number;
 }
 
-function EnhancedTableHead(props: EnhancedTableProps) {
+const EnhancedTableHead = (props: IEnhancedTableProps) => {
   const {
     onSelectAllClick,
     order,
@@ -208,11 +199,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
       </TableRow>
     </TableHead>
   );
-}
-
-interface EnhancedTableToolbarProps {
-  numSelected: number;
-}
+};
 
 const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   const { numSelected } = props;

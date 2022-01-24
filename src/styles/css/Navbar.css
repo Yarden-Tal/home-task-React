@@ -10,11 +10,11 @@
   background-color: #001145 !important;
 }
 .navbar__button__link {
-  color: white;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
 }
 .navbar__button__link:hover {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #40548e;
 }
