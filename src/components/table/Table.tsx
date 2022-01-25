@@ -25,10 +25,11 @@ import { visuallyHidden } from "@mui/utils";
 // Services
 import dataService from "../../services/dataService";
 // TS
+import { coinType } from "../../ts/types/types";
 import { Order } from "../../ts/types/MUITypes";
 import {
-  Data,
-  EnhancedTableToolbarProps,
+  IData,
+  IEnhancedTableToolbarProps,
   IEnhancedTableProps,
 } from "../../ts/interfaces/MUIInterfaces";
 // GUI
@@ -36,7 +37,7 @@ import { getComparator, headCells, rows, stableSort } from "../../gui/tableGui";
 
 const MUITable = (): JSX.Element => {
   const [order, setOrder] = useState<Order>("asc");
-  const [orderBy, setOrderBy] = useState<keyof Data>("name");
+  const [orderBy, setOrderBy] = useState<keyof IData>("name");
   const [selected, setSelected] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
@@ -45,14 +46,15 @@ const MUITable = (): JSX.Element => {
   useEffect(() => {
     const getData = async (): Promise<void> => {
       const resData = await dataService.getCoins();
-      console.log(resData.data.coins);
+      const coins: coinType[] = resData.data.coins;
+      console.log(coins);
     };
     getData();
   }, []);
 
   const handleRequestSort = (
     e: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof IData
   ) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
@@ -210,7 +212,7 @@ const EnhancedTableHead = (props: IEnhancedTableProps) => {
     onRequestSort,
   } = props;
   const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+    (property: keyof IData) => (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
 
@@ -254,7 +256,7 @@ const EnhancedTableHead = (props: IEnhancedTableProps) => {
   );
 };
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
+const EnhancedTableToolbar = (props: IEnhancedTableToolbarProps) => {
   const { numSelected } = props;
 
   return (

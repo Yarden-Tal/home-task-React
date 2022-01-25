@@ -1,5 +1,5 @@
 // TS
-import { Data, IHeadCell } from "../ts/interfaces/MUIInterfaces";
+import { IData, IHeadCell } from "../ts/interfaces/MUIInterfaces";
 import { Order } from "../ts/types/MUITypes";
 
 export const headCells: readonly IHeadCell[] = [
@@ -62,7 +62,7 @@ function createData(
   marketCap: number,
   volume: number,
   priceGraph: any
-): Data {
+): IData {
   return {
     index,
     name,
@@ -75,7 +75,7 @@ function createData(
   };
 }
 
-export const rows: Data[] = [
+export const rows: IData[] = [
   // createData("Cupcake", 305, 3.7, 67, 4.3),
   // createData("Donut", 452, 25.0, 51, 4.9),
   // createData("Eclair", 262, 16.0, 24, 6.0),

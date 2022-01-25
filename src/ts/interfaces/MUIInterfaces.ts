@@ -3,7 +3,7 @@ import { Order } from "../types/MUITypes";
 
 // Table Interfaces
 
-export interface Data {
+export interface IData {
   index: number;
   name: string;
   change: string;
@@ -16,12 +16,12 @@ export interface Data {
 
 export interface IHeadCell {
   disablePadding: boolean;
-  id: keyof Data;
+  id: keyof IData;
   label: string;
   numeric: boolean;
 }
 
-export interface EnhancedTableToolbarProps {
+export interface IEnhancedTableToolbarProps {
   numSelected: number;
 }
 
@@ -29,7 +29,7 @@ export interface IEnhancedTableProps {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof Data
+    property: keyof IData
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
