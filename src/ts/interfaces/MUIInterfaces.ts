@@ -1,11 +1,17 @@
+// TS IMPORTS
+import { Order } from "../types/MUITypes";
+
 // Table Interfaces
 
 export interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
+  index: number;
   name: string;
-  protein: number;
+  change: string;
+  price: number;
+  priceInBtc: number;
+  marketCap: number;
+  volume: number;
+  priceGraph: any;
 }
 
 export interface IHeadCell {
@@ -17,4 +23,16 @@ export interface IHeadCell {
 
 export interface EnhancedTableToolbarProps {
   numSelected: number;
+}
+
+export interface IEnhancedTableProps {
+  numSelected: number;
+  onRequestSort: (
+    event: React.MouseEvent<unknown>,
+    property: keyof Data
+  ) => void;
+  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  order: Order;
+  orderBy: string;
+  rowCount: number;
 }
