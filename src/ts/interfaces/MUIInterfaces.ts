@@ -6,7 +6,7 @@ import { Order } from "../types/MUITypes";
 export interface IData {
   index: number;
   name: string;
-  change: string;
+  change: number;
   price: number;
   priceInBtc: number;
   marketCap: number;

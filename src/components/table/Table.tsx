@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChangeEvent, useState, useEffect } from "react";
+import { ChangeEvent, useState, useEffect, useContext } from "react";
 // MUI
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -32,8 +32,16 @@ import {
   IEnhancedTableToolbarProps,
   IEnhancedTableProps,
 } from "../../ts/interfaces/MUIInterfaces";
-// GUI
-import { getComparator, headCells, rows, stableSort } from "../../gui/tableGui";
+import { IAppContext } from "../../ts/interfaces/contextInterfaces";
+// API
+import {
+  getComparator,
+  headCells,
+  fillRows,
+  stableSort,
+} from "../../api/tableAPI";
+// Context
+import { AppContext } from "../../context/appContext";
 
 const MUITable = (): JSX.Element => {
   const [order, setOrder] = useState<Order>("asc");
@@ -42,15 +50,15 @@ const MUITable = (): JSX.Element => {
   const [page, setPage] = useState(0);
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rows, setRows] = useState<IData[]>([]);
+
+  const appContext = useContext<IAppContext>(AppContext);
 
   useEffect(() => {
-    const getData = async (): Promise<void> => {
-      const resData = await dataService.getCoins();
-      const coins: coinType[] = resData.data.coins;
-      console.log(coins);
-    };
-    getData();
-  }, []);
+    const rows: IData[] = fillRows(appContext.coins);
+    setRows(rows);
+    console.log(rows.length);
+  }, [appContext.coins]);
 
   const handleRequestSort = (
     e: React.MouseEvent<unknown>,
@@ -133,9 +141,10 @@ const MUITable = (): JSX.Element => {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
+                  console.log(row);
+
                   const isItemSelected = isSelected(row.name as string);
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
                       hover

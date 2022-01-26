@@ -7,15 +7,18 @@ import "./styles/css/App.css";
 import Navbar from "./components/navbar/Navbar";
 import Table from "./components/table/Table";
 import Chart from "./components/chart/Chart";
+import AppContextProvider from "./context/appContext";
 
 const App = (): JSX.Element => {
   return (
     <div className="app">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Table />} />
-        <Route path="/chartView" element={<Chart />} />
-      </Routes>
+      <AppContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Table />} />
+          <Route path="/chartView" element={<Chart />} />
+        </Routes>
+      </AppContextProvider>
     </div>
   );
 };
